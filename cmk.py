@@ -23,7 +23,7 @@ Usage:
                    [--cmk-img=<img>] [--cmk-img-pol=<pol>] [--conf-dir=<dir>]
                    [--install-dir=<dir>] [--num-dp-cores=<num>]
                    [--num-cp-cores=<num>] [--pull-secret=<name>]
-                   [--saname=<name>][--socket-id=<num>]
+                   [--saname=<name>] [--socket-id=<num>]
   cmk init [--conf-dir=<dir>] [--num-dp-cores=<num>] [--num-cp-cores=<num>]
            [--socket-id=<num>]
   cmk discover [--conf-dir=<dir>]

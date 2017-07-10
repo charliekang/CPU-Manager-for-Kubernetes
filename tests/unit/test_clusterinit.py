@@ -65,7 +65,8 @@ def test_clusterinit_invalid_cmd_list_failure4():
 def test_clusterinit_invalid_image_pol():
     with pytest.raises(RuntimeError) as err:
         clusterinit.cluster_init("fakenode1", False, "init", "cmk", "fakepol1",
-                                 "/etc/cmk", "/opt/bin", "4", "2", "", "", "-1")
+                                 "/etc/cmk", "/opt/bin", "4", "2",
+                                 "", "", "-1")
     expected_err_msg = ('Image pull policy should be one of '
                         '[\'Never\', \'IfNotPresent\', \'Always\']')
     assert err.value.args[0] == expected_err_msg
@@ -74,7 +75,8 @@ def test_clusterinit_invalid_image_pol():
 def test_clusterinit_invalid_dp_cores_failure1():
     with pytest.raises(RuntimeError) as err:
         clusterinit.cluster_init("fakenode1", False, "init", "cmk", "Never",
-                                 "/etc/cmk", "/opt/bin", "-1", "2", "", "", "-1")
+                                 "/etc/cmk", "/opt/bin", "-1", "2",
+                                 "", "", "-1")
     expected_err_msg = "num_dp_cores cores should be a positive integer."
     assert err.value.args[0] == expected_err_msg
 
@@ -82,7 +84,8 @@ def test_clusterinit_invalid_dp_cores_failure1():
 def test_clusterinit_invalid_dp_cores_failure2():
     with pytest.raises(RuntimeError) as err:
         clusterinit.cluster_init("fakenode1", False, "init", "cmk", "Never",
-                                 "/etc/cmk", "/opt/bin", "3.5", "2", "", "", "-1")
+                                 "/etc/cmk", "/opt/bin", "3.5", "2",
+                                 "", "", "-1")
     expected_err_msg = "num_dp_cores cores should be a positive integer."
     assert err.value.args[0] == expected_err_msg
 
@@ -90,7 +93,8 @@ def test_clusterinit_invalid_dp_cores_failure2():
 def test_clusterinit_invalid_cp_cores_failure1():
     with pytest.raises(RuntimeError) as err:
         clusterinit.cluster_init("fakenode1", False, "init", "cmk", "Never",
-                                 "/etc/cmk", "/opt/bin", "1", "2.5", "", "", "-1")
+                                 "/etc/cmk", "/opt/bin", "1", "2.5",
+                                 "", "", "-1")
     expected_err_msg = "num_cp_cores cores should be a positive integer."
     assert err.value.args[0] == expected_err_msg
 
@@ -98,7 +102,8 @@ def test_clusterinit_invalid_cp_cores_failure1():
 def test_clusterinit_invalid_cp_cores_failure2():
     with pytest.raises(RuntimeError) as err:
         clusterinit.cluster_init("fakenode1", False, "init", "cmk", "Never",
-                                 "/etc/cmk", "/opt/bin", "1", "10.5", "", "", "-1")
+                                 "/etc/cmk", "/opt/bin", "1", "10.5",
+                                 "", "", "-1")
     expected_err_msg = "num_cp_cores cores should be a positive integer."
     assert err.value.args[0] == expected_err_msg
 
@@ -267,7 +272,7 @@ def test_clusterinit_pass_serviceaccountname():
             clusterinit.cluster_init("fakenode1", False,
                                      "init, discover, install",
                                      "cmk", "Never", "/etc/cmk", "/opt/bin",
-                                     "4", "2", "", serviceaccount_name)
+                                     "4", "2", "", serviceaccount_name, "-1")
             called_methods = mock.method_calls
             params = called_methods[0][1]
             pod_spec = params[1]
@@ -284,7 +289,7 @@ def test_clusterinit_dont_pass_serviceaccountname():
             clusterinit.cluster_init("fakenode1", False,
                                      "init, discover, install",
                                      "cmk", "Never", "/etc/cmk", "/opt/bin",
-                                     "4", "2", "", "")
+                                     "4", "2", "", "", "-1")
             called_methods = mock.method_calls
             params = called_methods[0][1]
             pod_spec = params[1]
